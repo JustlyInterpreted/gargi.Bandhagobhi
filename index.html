@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gargi Bandyopadhyay | Legal Scholar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1d1d1f;
+            background: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 0 5%;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1d1d1f;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1d1d1f;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #007aff;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 0 5%;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: #86868b;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content .university {
+            font-size: 1.2rem;
+            color: #515154;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            color: #515154;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 5% 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #1d1d1f;
+        }
+
+        /* Research Work */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .research-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .research-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+            line-height: 1.4;
+        }
+
+        .research-card .meta {
+            font-size: 0.9rem;
+            color: #86868b;
+            margin-bottom: 1rem;
+        }
+
+        .research-card p {
+            color: #515154;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: #007aff;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: 300;
+        }
+
+        .about-content h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #1d1d1f;
+        }
+
+        .about-content p {
+            color: #515154;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Books Section */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .book-card {
+            background: #f5f5f7;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        .book-card:hover {
+            background: #e8e8ed;
+        }
+
+        .book-card h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1d1d1f;
+        }
+
+        .book-card .author {
+            color: #86868b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .book-card p {
+            color: #515154;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Resume Section */
+        .resume-container {
+            text-align: center;
+            padding: 3rem;
+            background: #f5f5f7;
+            border-radius: 12px;
+        }
+
+        .resume-container h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+        }
+
+        .resume-container p {
+            color: #515154;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: #007aff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0056cc;
+        }
+
+        /* Contact */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+            background: #f5f5f7;
+            border-radius: 12px;
+        }
+
+        .contact-item h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #1d1d1f;
+        }
+
+        .contact-item p {
+            color: #515154;
+        }
+
+        .contact-item a {
+            color: #007aff;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #86868b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            margin: 2% auto;
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: 300;
+            cursor: pointer;
+            color: #86868b;
+        }
+
+        .close:hover {
+            color: #1d1d1f;
+        }
+
+        .modal h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #1d1d1f;
+            padding-right: 3rem;
+        }
+
+        .modal .meta {
+            color: #86868b;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .modal p {
+            color: #515154;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: #1d1d1f;
+        }
+
+        .modal h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.8rem;
+            color: #1d1d1f;
+        }
+
+        .modal ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal li {
+            color: #515154;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .section {
+                padding: 3rem 5% 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">Gargi Bandyopadhyay</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#books">Reading</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Gargi Bandyopadhyay</h1>
+            <p class="subtitle">Legal Scholar & Researcher</p>
+            <p class="university">B.A. LL.B. (Corporate Hons.) • National University of Study and Research in Law, Ranchi</p>
+            <p class="description">
+                Dedicated to advancing legal scholarship through rigorous research in urban development law, 
+                constitutional jurisprudence, and policy analysis. Seeking to contribute to the global legal 
+                academic community through innovative research and cross-cultural legal understanding.
+            </p>
+        </div>
+    </section>
+
+   <!-- Research Work Section -->
+<section id="research" class="section">
+    <h2 class="section-title">Research & Publications</h2>
+    <div class="research-grid">
+        <div class="research-card">
+            <h3>The Land Pooling Paradox: Balancing Developer Incentives and Public Good in Delhi's Master Plan 2041</h3>
+            <div class="meta">Urban Development Law • Constitutional Law • Policy Analysis</div>
+            <p>An in-depth analysis of Delhi's innovative Land Pooling Policy, examining the complex interplay between private developer incentives and public welfare objectives. This comprehensive study evaluates the legal framework, governance challenges, and implementation paradoxes within India's urban development landscape.</p>
+            <a href="#" class="read-more" onclick="openModal('landPooling')">Read Full Article</a>
+        </div>
+        
+        <div class="research-card">
+            <h3>Constitutional Dimensions of Environmental Justice in Urban Planning</h3>
+            <div class="meta">Constitutional Law • Environmental Law • Urban Policy</div>
+            <p>Exploring the intersection of constitutional principles and environmental protection in urban development, with specific focus on intergenerational equity and sustainable development doctrines in Indian jurisprudence.</p>
+            <a href="#" class="read-more" onclick="openModal('environmental')">Read Full Article</a>
+        </div>
+        
+        <div class="research-card">
+            <h3>Comparative Analysis of Land Assembly Mechanisms: Lessons from International Jurisprudence</h3>
+            <div class="meta">Comparative Law • Property Rights • International Law</div>
+            <p>A comprehensive comparative study examining land assembly mechanisms across different legal systems, analyzing the German, Japanese, and Indian approaches to balancing property rights with development imperatives.</p>
+            <a href="#" class="read-more" onclick="openModal('comparative')">Read Full Article</a>
+        </div>
+
+        <!-- NEW: Professional Ethics Research Card -->
+        <div class="research-card">
+            <h3>Navigating the Ethical Labyrinth: A Critical Analysis of Advocates' Duties When Defending Guilty Clients in the Indian Legal System</h3>
+            <div class="meta">Professional Ethics • Legal Practice • Indian Law</div>
+            <p>This research critically examines the ethical dilemmas faced by advocates in India when defending clients believed to be guilty, analyzing statutory provisions, professional conduct rules, and landmark case law.</p>
+            <a href="#" class="read-more" onclick="openModal('professionalEthics')">Read Full Article</a>
+        </div>
+    </div>
+</section>
+
+<!-- Modal Overlay for Full Article View -->
+<div id="modalOverlay" class="modal-overlay" style="display:none;">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <div id="modalBody">
+            <!-- Content will be injected here -->
+        </div>
+    </div>
+</div>
+
+<!-- Modal CSS -->
+<style>
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background: #fff;
+    padding: 2em;
+    border-radius: 8px;
+    max-width: 700px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+.close-btn {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    font-size: 1.5em;
+    cursor: pointer;
+}
+@media (max-width: 600px) {
+    .modal-content { padding: 1em; }
+}
+</style>
+
+<!-- Modal JavaScript -->
+<script>
+function openModal(articleId) {
+    var modal = document.getElementById('modalOverlay');
+    var body = document.getElementById('modalBody');
+    if (articleId === 'professionalEthics') {
+        body.innerHTML = `
+            <h2>Professional Ethics & Professional Accounting System</h2>
+            <h3>Navigating the Ethical Labyrinth: A Critical Analysis of Advocates' Duties When Defending Guilty Clients in the Indian Legal System</h3>
+            <p>
+                <strong>Submitted to:</strong> Dr. Shreemanshu Kumar Dash, Assistant Professor, Law, NUSRL, Ranchi<br>
+                <strong>Submitted by:</strong> Himanshu, Roll No.: 1108, Semester: X-A
+            </p>
+            <h4>Abstract</h4>
+            <p>
+                The ethical dilemma of defending clients believed to be guilty represents one of the most profound challenges confronting the legal profession in India. This research article critically examines the complex intersection of professional duties, moral obligations, and legal imperatives that advocates must navigate when representing clients whose guilt they suspect or know. Through comprehensive analysis of statutory provisions, professional conduct rules, landmark case law, and ethical frameworks, this study explores how advocates balance their zealous advocacy obligations with their duties as officers of the court and guardians of justice.
+            </p>
+            <h4>Introduction</h4>
+            <p>
+                The cornerstone of any democratic legal system rests upon the fundamental principle that every accused person deserves competent legal representation, regardless of the nature of the charges against them or their apparent guilt or innocence. This principle, deeply embedded in the Indian Constitution through Article 22 and reinforced by the Advocates Act of 1961, creates a professional and moral imperative for advocates to represent all clients without prejudice. However, this noble obligation generates one of the most challenging ethical dilemmas in legal practice: how should advocates conduct themselves when they know or strongly suspect that their client is guilty of the charges against them?
+            </p>
+            <h4>Objectives</h4>
+            <ul>
+                <li>Comprehensive analysis of ethical dilemmas when defending guilty clients.</li>
+                <li>Examination of the legal framework (Advocates Act, Bar Council Rules, Constitution).</li>
+                <li>Analysis of landmark cases and judicial guidance.</li>
+                <li>Identify practical solutions and best practices.</li>
+                <li>Propose regulatory reforms for ethical guidance.</li>
+            </ul>
+            <h4>Research Questions</h4>
+            <ul>
+                <li>How do advocates reconcile their duty with knowledge of client guilt?</li>
+                <li>Are current rules adequate for these ethical complexities?</li>
+                <li>How have courts interpreted and applied these principles?</li>
+                <li>What practical strategies can advocates use to maintain ethics?</li>
+            </ul>
+            <h4>Key Sections</h4>
+            <ul>
+                <li><strong>Constitutional Foundations:</strong> Article 22 and the right to legal representation.</li>
+                <li><strong>The Advocates Act of 1961:</strong> Professional obligations and dual roles.</li>
+                <li><strong>Professional Conduct Rules:</strong> Duty to accept briefs, prohibition against misleading the court, confidentiality and its limits.</li>
+                <li><strong>Case Law Analysis:</strong> Zahira Sheikh v. State of Gujarat and other landmark cases.</li>
+            </ul>
+            <p>
+                <em>For the full article, please download the complete document below.</em>
+            </p>
+            <p>
+                <a href="https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/63530037/7957ef9d-0d82-49b1-8446-eba8c3774f81/Professional-Ethics-Himanshu-1108.docx" target="_blank" style="color: #1a73e8; text-decoration: underline; font-weight: bold;">Download Full Document (DOCX)</a>
+            </p>
+        `;
+    } else {
+        // Placeholder for other articles
+        body.innerHTML = "<p>Full article coming soon.</p>";
+    }
+    modal.style.display = 'flex';
+}
+function closeModal() {
+    document.getElementById('modalOverlay').style.display = 'none';
+}
+</script>
+
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2 class="section-title">About</h2>
+        <div class="about-grid">
+            <div class="about-image">
+                GB
+            </div>
+            <div class="about-content">
+                <h3>My Journey in Law</h3>
+                <p>
+                    As a final-year B.A. LL.B. (Corporate Hons.) student at the National University of Study and Research in Law, Ranchi, 
+                    my academic journey has been shaped by a deep fascination with the intersection of law, policy, and social justice. 
+                    My research focuses primarily on urban development law, constitutional jurisprudence, and the complex dynamics 
+                    between private enterprise and public welfare.
+                </p>
+                <p>
+                    Beyond the classroom, I have engaged with legal scholarship through extensive research projects that examine 
+                    contemporary challenges in Indian jurisprudence. My work on Delhi's Land Pooling Policy represents a 
+                    comprehensive analysis of how legal frameworks adapt to address modern urban challenges while balancing 
+                    competing stakeholder interests.
+                </p>
+                <p>
+                    I am passionate about contributing to the global legal academic community and look forward to pursuing advanced 
+                    studies in law at the University of Turin, where I hope to deepen my understanding of comparative legal systems 
+                    and contribute to international legal scholarship.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books Section -->
+    <section id="books" class="section">
+        <h2 class="section-title">Essential Reading</h2>
+        <div class="books-grid">
+            <div class="book-card">
+                <h4>Governing the Commons</h4>
+                <p class="author">by Elinor Ostrom</p>
+                <p>A foundational text on collective action problems and institutional design, directly relevant to understanding land pooling mechanisms and community governance structures.</p>
+            </div>
+            
+            <div class="book-card">
+                <h4>The Constitution of India</h4>
+                <p class="author">by Granville Austin</p>
+                <p>Essential reading for understanding the constitutional foundations of property rights, development policies, and the balance between individual rights and collective welfare.</p>
+            </div>
+            
+            <div class="book-card">
+                <h4>Development as Freedom</h4>
+                <p class="author">by Amartya Sen</p>
+                <p>Provides crucial insights into the relationship between development policies, individual agency, and social justice - central themes in urban development law.</p>
+            </div>
+            
+            <div class="book-card">
+                <h4>The Death and Life of Great American Cities</h4>
+                <p class="author">by Jane Jacobs</p>
+                <p>Influential work on urban planning principles that inform contemporary debates about community participation and sustainable urban development.</p>
+            </div>
+            
+            <div class="book-card">
+                <h4>Property and Justice</h4>
+                <p class="author">by Jeremy Waldron</p>
+                <p>Philosophical exploration of property rights theory, essential for understanding the normative foundations of land assembly and development policies.</p>
+            </div>
+            
+            <div class="book-card">
+                <h4>Administrative Law</h4>
+                <p class="author">by M.P. Jain</p>
+                <p>Comprehensive treatment of administrative law principles crucial for understanding the governance dimensions of urban development policies.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <h2 class="section-title">Academic Credentials</h2>
+        <div class="resume-container">
+            <h3>Curriculum Vitae</h3>
+            <p>
+                Complete academic and research profile including educational background, research publications, 
+                conference presentations, academic achievements, and professional experience in legal research and analysis.
+            </p>
+            <a href="#" class="btn" onclick="downloadResume()">Download Resume (PDF)</a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h4>Academic Institution</h4>
+                <p>National University of Study and Research in Law<br>Ranchi, Jharkhand, India</p>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Email</h4>
+                <p><a href="mailto:gargi.bandyopadhyay@nusrlranchi.ac.in">gargi.bandyopadhyay@nusrlranchi.ac.in</a></p>
+            </div>
+            
+            <div class="contact-item">
+                <h4>Research Interests</h4>
+                <p>Urban Development Law<br>Constitutional Jurisprudence<br>Comparative Legal Systems</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Gargi Bandyopadhyay. All rights reserved. | Designed for academic purposes.</p>
+    </footer>
+
+    <!-- Modals -->
+    <div id="landPooling" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>The Land Pooling Paradox: Balancing Developer Incentives and Public Good in Delhi's Master Plan 2041</h2>
+            <div class="meta">Urban Development Law • Policy Analysis • Published 2024</div>
+            
+            <h3>Abstract</h3>
+            <p>Delhi, India's capital city, stands at a critical juncture in its urban development trajectory. As the second-largest urban agglomeration globally after Tokyo, Delhi faces unprecedented challenges in housing, infrastructure, and environmental sustainability. This comprehensive study examines the intricate balance between developer incentives and public welfare within Delhi's innovative Land Pooling Policy framework.</p>
+            
+            <h3>Key Research Questions</h3>
+            <ul>
+                <li>How does Delhi's Land Pooling Policy attempt to reconcile competing interests of developers, landowners, and the broader public interest within the legal framework of urban development?</li>
+                <li>What are the key implementation challenges facing Delhi's land pooling mechanism, and how do they reflect broader tensions in urban governance?</li>
+                <li>How do incentive structures embedded in MPD 2041, particularly Floor Area Ratio provisions, impact the balance between developer profits and public good objectives?</li>
+            </ul>
+            
+            <h3>Methodology</h3>
+            <p>This study employs a mixed-methods approach combining legal analysis, policy document review, and comparative case study methodologies. The research process involved in-depth examination of relevant legislative frameworks, systematic comparison with successful models from other jurisdictions, and critical analysis of stakeholder perspectives and judicial precedents.</p>
+            
+            <h3>Key Findings</h3>
+            <p>The implementation experience reveals substantial tensions between developer incentives and public welfare objectives, highlighting the need for careful recalibration of legal frameworks, institutional mechanisms, and incentive structures. The study identifies several structural impediments including fragmented ownership, contiguity problems, and limited institutional facilitation.</p>
+            
+            <h3>Comparative Analysis</h3>
+            <p>The research provides insights from Gujarat's Town Planning Scheme and international models from Germany, Japan, and South Korea, offering valuable lessons for improving Delhi's approach through enhanced state facilitation, structured consultation processes, and responsive plan refinement mechanisms.</p>
+            
+            <h3>Policy Recommendations</h3>
+            <ul>
+                <li>Legislative reforms to address implementation bottlenecks</li>
+                <li>Enhanced institutional coordination mechanisms</li>
+                <li>Strengthened participation frameworks for stakeholders</li>
+                <li>Balanced incentive structures aligning developer profits with public welfare</li>
+                <li>Robust monitoring and evaluation systems</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="environmental" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Constitutional Dimensions of Environmental Justice in Urban Planning</h2>
+            <div class="meta">Constitutional Law • Environmental Law • Urban Policy</div>
+            
+            <h3>Research Overview</h3>
+            <p>This research explores the intersection of constitutional principles and environmental protection in urban development, with specific focus on intergenerational equity and sustainable development doctrines in Indian jurisprudence.</p>
+            
+            <h3>Constitutional Framework</h3>
+            <p>The study examines how constitutional provisions, particularly Articles 21 (Right to Life) and 48A (Protection of Environment), create binding obligations for urban planning authorities to consider environmental justice in development decisions.</p>
+            
+            <h3>Judicial Interpretation</h3>
+            <p>Analysis of landmark cases including M.C. Mehta v. Union of India and their impact on establishing principles of sustainable development and intergenerational equity in urban planning law.</p>
+            
+            <h3>Policy Implications</h3>
+            <p>The research identifies gaps in current urban planning frameworks and proposes constitutional law-based approaches to ensure environmental justice in urban development processes.</p>
+        </div>
+    </div>
+
+    <div id="comparative" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Comparative Analysis of Land Assembly Mechanisms: Lessons from International Jurisprudence</h2>
+            <div class="meta">Comparative Law • Property Rights • International Law</div>
+            
+            <h3>Comparative Framework</h3>
+            <p>This comprehensive study examines land assembly mechanisms across different legal systems, analyzing the German, Japanese, and Indian approaches to balancing property rights with development imperatives.</p>
+            
+            <h3>Methodological Approach</h3>
+            <p>The research employs comparative legal methodology to analyze institutional frameworks, procedural safeguards, and outcome effectiveness across different jurisdictions.</p>
+            
+            <h3>Key Jurisdictions Analyzed</h3>
+            <ul>
+                <li>Germany's Land Readjustment System</li>
+                <li>Japan's Land Pooling Initiatives</li>
+                <li>South Korea's Urban Development Mechanisms</li>
+                <li>India's Emerging Land Pooling Policies</li>
+            </ul>
+            
+            <h3>Findings and Recommendations</h3>
+            <p>The study identifies best practices in stakeholder consultation, dispute resolution mechanisms, and institutional design that can inform policy development in emerging economies seeking to balance development imperatives with property rights protection.</p>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scrolling and section visibility
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Modal functionality
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        document.querySelectorAll('.close').forEach(closeBtn => {
+            closeBtn.onclick = function() {
+                this.parentElement.parentElement.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Resume download functionality
+        function downloadResume() {
+            // In a real implementation, this would link to an actual PDF file
+            alert('Resume download would be implemented with actual PDF file link.');
+        }
+
+        // Navigation highlighting
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
